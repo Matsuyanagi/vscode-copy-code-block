@@ -11,16 +11,107 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.copyCodeBlock"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.copyCodeBlock",
+                "title": "Copy code block",
+                "category": "CopyCodeBlock"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Copy Code Block Configuration",
+            "properties": {
+                "copyCodeBlock.formats": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "title": "format elements",
+                        "properties": {
+                            "formatName": {
+                                "type": "string",
+                                "description": "Format name.It is specified by args of keybinding."
+                            },
+                            "prefixCodeBlockFormat": {
+                                "type": "string",
+                                "default": "${fullPath}:${topLineNumber}${EOL}",
+                                "description": "Specifies the format of the code block prefix lines.\nAvailable tokens:\n ${fullPath}                    : Filename full path.\n ${workspaceFolderRelativePath} : Filename relative path from workspaceFolder.\n ${fileBasename}                : Filename.\n ${fileExtname}                 : Filename Extension.\n ${fileBasenameWithoutExtension}: Filename without extension.\n ${workspaceFolder}             : Workspace folder path.\n ${fileDirname}                 : Dirname\n ${pathSeparator}               : OS pathSeparator\n ${pathParse.root}              : Node.js path.parse() function's 'root'\n ${pathParse.dir}               : Node.js path.parse() function's 'dir'\n ${pathParse.base}              : Node.js path.parse() function's 'base'\n ${pathParse.ext}               : Node.js path.parse() function's 'ext'\n ${pathParse.name}              : Node.js path.parse() function's 'name'\n ${languageId}                  : Language on vscode.\n ${topLineNumber}               : Code selection's top line number.\n ${YYYY}                        : Current year 4-digit. These names conform to 'Moment.js'.\n ${MM}                          : Current month \"01\"-\"12\"\n ${DD}                          : Current day \"01\"-\"31\"\n ${HH}                          : Current hour \"01\"-\"12\"\n ${mm}                          : Current minutes \"01\"-\"59\"\n ${ss}                          : Current second \"01\"-\"59\"\n ${osEOL}                       : OS end of line. windows:\"\\r\\n\", linux/macOS:\"\\n\"\n ${EOL}                         : Editors end of line.\n ${LF}                          : \"\\n\"\n ${CRLF}                        : \"\\r\\n\"\n"
+                            },
+                            "postfixCodeBlockFormat": {
+                                "type": "string",
+                                "default": "",
+                                "description": "Postfix code block format. The available tokens are the same as prefixCodeBlockFormat."
+                            },
+                            "codeLineFormat": {
+                                "type": "string",
+                                "default": "${LINENUMBER}: ${CODE}${EOL}",
+                                "description": "The available tokens are the following in addition to prefixCodeBlockFormat.\n${LINENUMBER}                  : Line number.\n${CODE}                        : line text."
+                            },
+                            "multipleSelectionCreateMultipleCodeBlocks": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "If true is specified, multiple selections will generate multiple code blocks.\nWhen false is specified, it is grouped into one code block with \"multipleSelectionsBoundalyMarkerFormat\" as a delimiter."
+                            },
+                            "multipleSelectionsBoundalyMarkerFormat": {
+                                "type": "string",
+                                "default": "---${EOL}",
+                                "description": "Delimiter when \"multipleSelectionCreateMultipleCodeBlocks\" is set to true."
+                            },
+                            "forcePathSeparatorSlash": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Forcibly replace path separator with slash."
+                            }
+                        }
+                    },
+                    "description": "Copy Formats",
+                    "default": [
+                        {
+                            "formatName": "default",
+                            "prefixCodeBlockFormat": "${fullPath}:${topLineNumber}${EOL}",
+                            "postfixCodeBlockFormat": "",
+                            "codeLineFormat": "${LINENUMBER}: ${CODE}${EOL}",
+                            "multipleSelectionCreateMultipleCodeBlocks": false,
+                            "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
+                            "forcePathSeparatorSlash": true
+                        },
+                        {
+                            "formatName": "markdown",
+                            "prefixCodeBlockFormat": "${fullPath}:${topLineNumber}${EOL}```${languageId}${EOL}",
+                            "postfixCodeBlockFormat": "```${EOL}",
+                            "codeLineFormat": "${CODE}${EOL}",
+                            "multipleSelectionCreateMultipleCodeBlocks": false,
+                            "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
+                            "forcePathSeparatorSlash": true
+                        }
+                    ]
+                }
+            },
+            "keybindings": [
+                {
+                    "command": "extension.copyCodeBlock",
+                    "key": "alt+j alt+1",
+                    "mac": "cmd+j cmd+1",
+                    "when": "editorTextFocus",
+                    "args": {
+                        "formatName": "default"
+                    }
+                },
+                {
+                    "command": "extension.copyCodeBlock",
+                    "key": "alt+j alt+2",
+                    "mac": "cmd+j cmd+2",
+                    "when": "editorTextFocus",
+                    "args": {
+                        "formatName": "markdown"
+                    }
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
@@ -37,6 +128,7 @@
         "@types/mocha": "^2.2.42"
     },
     "dependencies": {
+        "@types/copy-paste": "^1.1.30",
         "copy-paste": "^1.3.0"
     }
 }
