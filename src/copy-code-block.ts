@@ -43,8 +43,8 @@ function copyCodeBlock( option?: any ) {
 	}
 
 	// コードブロックのプレフィクス行、ポストフィクス行、コード行のフォーマットを読み込む
-	let prefixCodeBlockFormat: string = ""
-	let postfixCodeBlockFormat: string = ""
+	let codeBlockHeaderFormat: string = ""
+	let codeBlockFooterFormat: string = ""
 	let codeLineFormat: string = ""
 	let multipleSelectionCreateMultipleCodeBlocks: boolean = false
 	let multipleSelectionsBoundalyMarkerFormat: string = ""
@@ -52,11 +52,11 @@ function copyCodeBlock( option?: any ) {
 	let forceSpaceIndent: boolean = false
 
 	if ( format !== null ) {
-		if ( format[ "prefixCodeBlockFormat" ] !== undefined ) {
-			prefixCodeBlockFormat = format[ "prefixCodeBlockFormat" ]
+		if ( format[ "codeBlockHeaderFormat" ] !== undefined ) {
+			codeBlockHeaderFormat = format[ "codeBlockHeaderFormat" ]
 		}
-		if ( format[ "postfixCodeBlockFormat" ] !== undefined ) {
-			postfixCodeBlockFormat = format[ "postfixCodeBlockFormat" ]
+		if ( format[ "codeBlockFooterFormat" ] !== undefined ) {
+			codeBlockFooterFormat = format[ "codeBlockFooterFormat" ]
 		}
 		if ( format[ "codeLineFormat" ] !== undefined ) {
 			codeLineFormat = format[ "codeLineFormat" ]
@@ -130,7 +130,7 @@ function copyCodeBlock( option?: any ) {
 			[ "workspaceFolder", { re: /\$\{workspaceFolder\}/g, str: workspaceFolder } ],
 			[ "fileDirname", { re: /\$\{fileDirname\}/g, str: fileDirname } ],
 			[ "pathSeparator", { re: /\$\{pathSeparator\}/g, str: pathSeparator } ],
-			[ "osPathSeparator", { re: /\$\{pathSeparator\}/g, str: osPathSeparator } ],
+			[ "osPathSeparator", { re: /\$\{osPathSeparator\}/g, str: osPathSeparator } ],
 			[ "pathParse.root", { re: /\$\{pathParse\.root\}/g, str: pathParse.root } ],
 			[ "pathParse.dir", { re: /\$\{pathParse\.dir\}/g, str: pathParse.dir } ],
 			[ "pathParse.base", { re: /\$\{pathParse\.base\}/g, str: pathParse.base } ],
@@ -163,9 +163,9 @@ function copyCodeBlock( option?: any ) {
 		if ( multipleSelectionCreateMultipleCodeBlocks || i === 0 ) {
 			const topLineNumber = selection.start.line + 1
 			placeHolderMap.set( "topLineNumber", { re: /\$\{topLineNumber\}/g, str: topLineNumber.toString() } )
-			let prefixCodeBlock = replacePlaceHolderMap( prefixCodeBlockFormat, placeHolderMap )
+			let codeBlockHeader = replacePlaceHolderMap( codeBlockHeaderFormat, placeHolderMap )
 			codeLine = replacePlaceHolderMap( codeLineFormat, placeHolderMap )
-			copyText += prefixCodeBlock
+			copyText += codeBlockHeader
 		} else {
 			let multipleSelectionsBoundalyMarker = replacePlaceHolderMap( multipleSelectionsBoundalyMarkerFormat, placeHolderMap )
 			copyText += multipleSelectionsBoundalyMarker
@@ -186,8 +186,8 @@ function copyCodeBlock( option?: any ) {
 			copyText += c
 		}
 		if ( multipleSelectionCreateMultipleCodeBlocks || i === selections.length - 1 ) {
-			let postfixCodeBlock = replacePlaceHolderMap( postfixCodeBlockFormat, placeHolderMap )
-			copyText += postfixCodeBlock
+			let codeBlockFooter = replacePlaceHolderMap( codeBlockFooterFormat, placeHolderMap )
+			copyText += codeBlockFooter
 		}
 	} )
 

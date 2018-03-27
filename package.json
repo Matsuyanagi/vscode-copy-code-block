@@ -10,6 +10,16 @@
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "copy",
+        "markdown",
+        "filename",
+        "line number"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Matsuyanagi/vscode-copy-code-block"
+    },
     "activationEvents": [
         "onCommand:extension.copyCodeBlock"
     ],
@@ -36,20 +46,20 @@
                                 "type": "string",
                                 "description": "Format name.It is specified by args of keybinding."
                             },
-                            "prefixCodeBlockFormat": {
+                            "codeBlockHeaderFormat": {
                                 "type": "string",
                                 "default": "${fullPath}:${topLineNumber}${EOL}",
-                                "description": "Specifies the format of the code block prefix lines.\nAvailable tokens:\n ${fullPath}                    : Filename full path.\n ${workspaceFolderRelativePath} : Filename relative path from workspaceFolder.\n ${fileBasename}                : Filename.\n ${fileExtname}                 : Filename Extension.\n ${fileBasenameWithoutExtension}: Filename without extension.\n ${workspaceFolder}             : Workspace folder path.\n ${fileDirname}                 : Dirname\n ${pathSeparator}               : OS pathSeparator\n ${pathParse.root}              : Node.js path.parse() function's 'root'\n ${pathParse.dir}               : Node.js path.parse() function's 'dir'\n ${pathParse.base}              : Node.js path.parse() function's 'base'\n ${pathParse.ext}               : Node.js path.parse() function's 'ext'\n ${pathParse.name}              : Node.js path.parse() function's 'name'\n ${languageId}                  : Language on vscode.\n ${topLineNumber}               : Code selection's top line number.\n ${YYYY}                        : Current year 4-digit. These names conform to 'Moment.js'.\n ${MM}                          : Current month \"01\"-\"12\"\n ${DD}                          : Current day \"01\"-\"31\"\n ${HH}                          : Current hour \"01\"-\"12\"\n ${mm}                          : Current minutes \"01\"-\"59\"\n ${ss}                          : Current second \"01\"-\"59\"\n ${osEOL}                       : OS end of line. windows:\"\\r\\n\", linux/macOS:\"\\n\"\n ${EOL}                         : Editors end of line.\n ${LF}                          : \"\\n\"\n ${CRLF}                        : \"\\r\\n\"\n"
+                                "description": "Specifies the format of the code block header lines.\nAvailable tokens:\n ${fullPath}                    : Filename full path.\n ${workspaceFolderRelativePath} : Filename relative path from workspaceFolder.\n ${fileBasename}                : Filename.\n ${fileExtname}                 : Filename Extension.\n ${fileBasenameWithoutExtension}: Filename without extension.\n ${workspaceFolder}             : Workspace folder path.\n ${fileDirname}                 : Dirname\n ${pathSeparator}               : OS pathSeparator\n ${pathParse.root}              : Node.js path.parse() function's 'root'\n ${pathParse.dir}               : Node.js path.parse() function's 'dir'\n ${pathParse.base}              : Node.js path.parse() function's 'base'\n ${pathParse.ext}               : Node.js path.parse() function's 'ext'\n ${pathParse.name}              : Node.js path.parse() function's 'name'\n ${languageId}                  : Language on vscode.\n ${topLineNumber}               : Code selection's top line number.\n ${YYYY}                        : Current year 4-digit. These names conform to 'Moment.js'.\n ${MM}                          : Current month \"01\"-\"12\"\n ${DD}                          : Current day \"01\"-\"31\"\n ${HH}                          : Current hour \"01\"-\"12\"\n ${mm}                          : Current minutes \"01\"-\"59\"\n ${ss}                          : Current second \"01\"-\"59\"\n ${osEOL}                       : OS end of line. windows:\"\\r\\n\", linux/macOS:\"\\n\"\n ${EOL}                         : Editors end of line.\n ${LF}                          : \"\\n\"\n ${CRLF}                        : \"\\r\\n\"\n"
                             },
-                            "postfixCodeBlockFormat": {
+                            "codeBlockFooterFormat": {
                                 "type": "string",
                                 "default": "",
-                                "description": "Postfix code block format. The available tokens are the same as prefixCodeBlockFormat."
+                                "description": "Code block footer format. The available tokens are the same as codeBlockHeaderFormat."
                             },
                             "codeLineFormat": {
                                 "type": "string",
                                 "default": "${LINENUMBER}: ${CODE}${EOL}",
-                                "description": "The available tokens are the following in addition to prefixCodeBlockFormat.\n${LINENUMBER}                  : Line number.\n${CODE}                        : line text."
+                                "description": "The available tokens are the following in addition to codeBlockHeaderFormat.\n${LINENUMBER}                  : Line number.\n${CODE}                        : line text."
                             },
                             "multipleSelectionCreateMultipleCodeBlocks": {
                                 "type": "boolean",
@@ -77,8 +87,8 @@
                     "default": [
                         {
                             "formatName": "default",
-                            "prefixCodeBlockFormat": "${fullPath}:${topLineNumber}${EOL}",
-                            "postfixCodeBlockFormat": "",
+                            "codeBlockHeaderFormat": "${fullPath}:${topLineNumber}${EOL}",
+                            "codeBlockFooterFormat": "",
                             "codeLineFormat": "${LINENUMBER}: ${CODE}${EOL}",
                             "multipleSelectionCreateMultipleCodeBlocks": false,
                             "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
@@ -87,8 +97,8 @@
                         },
                         {
                             "formatName": "markdown",
-                            "prefixCodeBlockFormat": "${fullPath}:${topLineNumber}${EOL}```${languageId}${EOL}",
-                            "postfixCodeBlockFormat": "```${EOL}",
+                            "codeBlockHeaderFormat": "${fullPath}:${topLineNumber}${EOL}```${languageId}${EOL}",
+                            "codeBlockFooterFormat": "```${EOL}",
                             "codeLineFormat": "${CODE}${EOL}",
                             "multipleSelectionCreateMultipleCodeBlocks": false,
                             "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
