@@ -49,6 +49,7 @@ function copyCodeBlock( option?: any ) {
 	let multipleSelectionCreateMultipleCodeBlocks: boolean = false
 	let multipleSelectionsBoundalyMarkerFormat: string = ""
 	let forcePathSeparatorSlash: boolean = false
+	let forceSpaceIndent: boolean = false
 
 	if ( format !== null ) {
 		if ( format[ "prefixCodeBlockFormat" ] !== undefined ) {
@@ -68,6 +69,9 @@ function copyCodeBlock( option?: any ) {
 		}
 		if ( format[ "forcePathSeparatorSlash" ] !== undefined ) {
 			forcePathSeparatorSlash = format[ "forcePathSeparatorSlash" ]
+		}
+		if ( format[ "forceSpaceIndent" ] !== undefined ) {
+			forceSpaceIndent = format[ "forceSpaceIndent" ]
 		}
 	}
 
@@ -149,6 +153,11 @@ function copyCodeBlock( option?: any ) {
 
 	let codeLine = ""
 	let copyText = ""
+	let tabSize:number = 4
+	if ( forceSpaceIndent && ( typeof editor.options.tabSize === "number" ) ) {
+		// 強制スペースインデントのためのタブ幅
+		tabSize = editor.options.tabSize
+	}
 
 	selections.forEach( ( selection, i ) => {
 		if ( multipleSelectionCreateMultipleCodeBlocks || i === 0 ) {
@@ -164,7 +173,13 @@ function copyCodeBlock( option?: any ) {
 
 		for ( let n = selection.start.line; n <= selection.end.line; n += 1 ) {
 			const number = leftPad( String( n + 1 ), largestLineNumberLength, ' ' )
-			const line = document.lineAt( n ).text
+			let line = document.lineAt( n ).text
+			if ( forceSpaceIndent ) {
+				//	強制的に先頭のインデントタブを空白に置き換える。置き換え幅はエディタの設定に従う
+				line = line.replace( /^(\t+)/, function ( match: string, p1: string, offset: number, str: string ) {
+					return ' '.repeat( p1.length * tabSize )
+				} )
+			}
 
 			let c = codeLine.replace( "${LINENUMBER}", number )
 			c = c.replace( "${CODE}", line )

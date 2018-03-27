@@ -65,6 +65,11 @@
                                 "type": "boolean",
                                 "default": false,
                                 "description": "Forcibly replace path separator with slash."
+                            },
+                            "forceSpaceIndent": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Force space indentation."
                             }
                         }
                     },
@@ -77,7 +82,8 @@
                             "codeLineFormat": "${LINENUMBER}: ${CODE}${EOL}",
                             "multipleSelectionCreateMultipleCodeBlocks": false,
                             "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
-                            "forcePathSeparatorSlash": true
+                            "forcePathSeparatorSlash": false,
+                            "forceSpaceIndent": false
                         },
                         {
                             "formatName": "markdown",
@@ -86,7 +92,8 @@
                             "codeLineFormat": "${CODE}${EOL}",
                             "multipleSelectionCreateMultipleCodeBlocks": false,
                             "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
-                            "forcePathSeparatorSlash": true
+                            "forcePathSeparatorSlash": true,
+                            "forceSpaceIndent": true
                         }
                     ]
                 }
