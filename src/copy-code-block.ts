@@ -82,7 +82,8 @@ function copyCodeBlock( option?: any ) {
 	let workspaceFolder = vscode.workspace.workspaceFolders ?
 		vscode.workspace.workspaceFolders[ 0 ].uri.fsPath : ""
 	let fileDirname = path.dirname( fullPath )
-	const pathSeparator = path.sep
+	let pathSeparator = path.sep
+	const osPathSeparator = path.sep
 	let pathParse = path.parse( fullPath )
 	const languageId = document.languageId
 	const d = new Date()
@@ -103,6 +104,7 @@ function copyCodeBlock( option?: any ) {
 		pathParse.base = pathParse.base.replace( /\\/g, "/" )
 		pathParse.ext = pathParse.ext.replace( /\\/g, "/" )
 		pathParse.name = pathParse.name.replace( /\\/g, "/" )
+		pathSeparator = "/"
 	}
 
 
@@ -119,10 +121,12 @@ function copyCodeBlock( option?: any ) {
 			[ "workspaceFolderRelativePath", { re: /\$\{workspaceFolderRelativePath\}/g, str: workspaceFolderRelativePath } ],
 			[ "fileBasename", { re: /\$\{fileBasename\}/g, str: fileBasename } ],
 			[ "fileExtname", { re: /\$\{fileExtname\}/g, str: fileExtname } ],
+			[ "fileExtnameWithoutDot", { re: /\$\{fileExtnameWithoutDot\}/g, str: fileExtname.replace( /\./g, "" ) } ],
 			[ "fileBasenameWithoutExtension", { re: /\$\{fileBasenameWithoutExtension\}/g, str: fileBasenameWithoutExtension } ],
 			[ "workspaceFolder", { re: /\$\{workspaceFolder\}/g, str: workspaceFolder } ],
 			[ "fileDirname", { re: /\$\{fileDirname\}/g, str: fileDirname } ],
 			[ "pathSeparator", { re: /\$\{pathSeparator\}/g, str: pathSeparator } ],
+			[ "osPathSeparator", { re: /\$\{pathSeparator\}/g, str: osPathSeparator } ],
 			[ "pathParse.root", { re: /\$\{pathParse\.root\}/g, str: pathParse.root } ],
 			[ "pathParse.dir", { re: /\$\{pathParse\.dir\}/g, str: pathParse.dir } ],
 			[ "pathParse.base", { re: /\$\{pathParse\.base\}/g, str: pathParse.base } ],
