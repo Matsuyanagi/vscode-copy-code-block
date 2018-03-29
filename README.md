@@ -1,21 +1,69 @@
 # vscode-copy-code-block
 Copy code with filename and line number, customized format.
 
+## Available command
+* extension.copyCodeBlock: copy cursor line or selections by specified format.
 
+## default keybind
+```json
+    {
+        "key": "alt+j alt+1",
+        "command": "extension.copyCodeBlock",
+        "args":{
+            "formatName": "default"
+        }
+    },
+    {
+        "key": "alt+j alt+2",
+        "command": "extension.copyCodeBlock",
+        "args":{
+            "formatName": "markdown"
+        }
+    },
+```
 
-## Extension Settings
+## default format
 
-| parameter name  |   |   |
-|---|---|---|
-| formatName  | keybinding  "args" "formatName"  |   |
-| codeBlockHeaderFormat  | Specifies the format of the code block footer lines. |   |
-| codeBlockFooterFormat  | Code block footer format. The available tokens are the same as codeBlockHeaderFormat." |   |
-| codeLineFormat  | The available tokens are the following in addition to codeBlockHeaderFormat. |   |
-| multipleSelectionCreateMultipleCodeBlocks  | If true is specified, multiple selections will generate multiple code blocks. |   |
-| multipleSelectionsBoundalyMarkerFormat  | Delimiter when "multipleSelectionCreateMultipleCodeBlocks" is set to true.  |   |
-| forcePathSeparatorSlash  | Forcibly replace path separator with slash.  |   |
-| forceSpaceIndent  | Force space indentation.  |   |
-|   |   |   |
+```json
+    "default": [
+        {
+            "formatName": "default",
+            "codeBlockHeaderFormat": "${fullPath}:${topLineNumber}${EOL}",
+            "codeBlockFooterFormat": "",
+            "codeLineFormat": "${LINENUMBER}: ${CODE}${EOL}",
+            "multipleSelectionCreateMultipleCodeBlocks": false,
+            "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
+            "forcePathSeparatorSlash": false,
+            "forceSpaceIndent": false
+        },
+        {
+            "formatName": "markdown",
+            "codeBlockHeaderFormat": "${fullPath}:${topLineNumber}${EOL}```${languageId}${EOL}",
+            "codeBlockFooterFormat": "```${EOL}",
+            "codeLineFormat": "${CODE}${EOL}",
+            "multipleSelectionCreateMultipleCodeBlocks": false,
+            "multipleSelectionsBoundalyMarkerFormat": "---${EOL}",
+            "forcePathSeparatorSlash": true,
+            "forceSpaceIndent": true
+        }
+    ]
+```
+
+The formats can be added and edited.
+You can use it by specifying "formatName" with "args" parameter of key binding.
+
+## Configurations
+
+| parameter name  | description  | type  | default value  |
+|---|---|---|---|
+| formatName  | keybinding  "args" "formatName"  | string  | ""  |
+| codeBlockHeaderFormat  | Specifies the format of the code block footer lines. | string  | "${fullPath}:${topLineNumber}${EOL}"  |
+| codeBlockFooterFormat  | Code block footer format. The available tokens are the same as codeBlockHeaderFormat." | string  | ""  |
+| codeLineFormat  | The available tokens are the following in addition to codeBlockHeaderFormat. | string  | "${LINENUMBER}: ${CODE}${EOL}"  |
+| multipleSelectionCreateMultipleCodeBlocks  | If true is specified, multiple selections will generate multiple code blocks. | boolean  | false  |
+| multipleSelectionsBoundalyMarkerFormat  | Delimiter when "multipleSelectionCreateMultipleCodeBlocks" is set to true.  | string  | "---${EOL}"  |
+| forcePathSeparatorSlash  | Forcibly replace path separator with slash.  | boolean  | false  |
+| forceSpaceIndent  | Force space indentation.  | boolean  | false  |
 
 
 
@@ -102,7 +150,7 @@ Copy code with filename and line number, customized format.
 	```
 ```
 
-### HTML pre, code element.
+### html pre, code element.
 ```json
     {
         "formatName": "html",
@@ -127,5 +175,8 @@ Copy code with filename and line number, customized format.
 	</code></pre>
 ```
 
+## Acknowledgments
+
+This extension was inspired by the [Copy With Line Numbers](https://marketplace.visualstudio.com/items?itemName=yassh.copy-with-line-numbers).
 
 
