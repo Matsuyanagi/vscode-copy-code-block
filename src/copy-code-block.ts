@@ -32,7 +32,7 @@ function copyCodeBlock( option?: any ) {
 	if ( copyCodeFormats ) {
 		// 指定の文字列にマッチすればその設定、ない場合は "default" が使われる
 		for ( const f of copyCodeFormats ) {
-			if ( f[ 'formatName' ] === option.formatName ) {
+			if ( option && f[ 'formatName' ] === option.formatName ) {
 				format = f
 				break
 			}
