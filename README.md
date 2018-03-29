@@ -139,7 +139,7 @@ You can use it by specifying "formatName" with "args" parameter of key binding.
 	}
 ```
 
-```plaintext
+~~~plaintext
 	e:/Works/vscode-copy-code-block/src/copy-code-block.ts:10
 	```typescript
 	export const packaged_commands: { [ key: string ]: ( args: any ) => void } = {
@@ -148,7 +148,7 @@ You can use it by specifying "formatName" with "args" parameter of key binding.
 	    }
 	}
 	```
-```
+~~~
 
 ### html pre, code element.
 ```json
