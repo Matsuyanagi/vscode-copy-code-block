@@ -2,7 +2,7 @@
     "name": "copy-code-block",
     "displayName": "Copy Code Block",
     "description": "Copy code with filename and line number, customized format.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "Matsuyanagi",
     "engines": {
         "vscode": "^1.21.0"
