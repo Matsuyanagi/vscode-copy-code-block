@@ -18,7 +18,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/Matsuyanagi/vscode-copy-code-block"
+        "url": "https://github.com/Matsuyanagi/vscode-copy-code-block.git"
     },
     "activationEvents": [
         "onCommand:extension.copyCodeBlock"
