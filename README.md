@@ -1,6 +1,14 @@
 # vscode-copy-code-block
 Copy code with filename and line number, customized format.
 
+Copy with linenumber.
+
+![Copy markdown format](./images/copycodeblock03.gif)
+
+Copy markdown format. Use keybinding arguments.
+
+![Copy markdown format](./images/copycodeblock01.gif)
+
 ## Available command
 * extension.copyCodeBlock: copy cursor line or selections by specified format.
 
