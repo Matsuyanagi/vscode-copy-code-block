@@ -3,7 +3,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { EOL } from 'os'
-import { copy } from 'copy-paste'
 
 const COPY_CODE_BLOCK = 'extension.copyCodeBlock'
 
