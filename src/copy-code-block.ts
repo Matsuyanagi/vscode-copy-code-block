@@ -191,7 +191,8 @@ function copyCodeBlock( option?: any ) {
 		}
 	} )
 
-	copy( copyText )
+	// copy to clipboard.
+	vscode.env.clipboard.writeText(copyText);
 }
 
 /**
