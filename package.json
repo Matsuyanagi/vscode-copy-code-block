@@ -2,7 +2,7 @@
     "name": "copy-code-block",
     "displayName": "Copy Code Block",
     "description": "Copy code with filename and line number, customized format.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "Matsuyanagi",
     "engines": {
         "vscode": "^1.30.0"
@@ -138,11 +138,11 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^3.2.2",
-        "vscode": "^1.1.26",
-        "tslint": "^5.12.0",
-        "@types/node": "^10.12.17",
-        "@types/mocha": "^5.2.5"
+        "typescript": "^3.5.1",
+        "vscode": "^1.1.34",
+        "tslint": "^5.17.0",
+        "@types/node": "^12.0.4",
+        "@types/mocha": "^5.2.7"
     },
     "dependencies": {}
 }
