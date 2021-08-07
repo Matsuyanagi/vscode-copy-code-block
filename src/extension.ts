@@ -3,7 +3,7 @@
 import * as vscode from 'vscode'
 import { packaged_commands } from './copy-code-block'
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate( context: vscode.ExtensionContext ) {
 
     Object.keys( packaged_commands ).forEach( ( key ) => {
         const command = packaged_commands[ key ]
