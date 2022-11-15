@@ -174,7 +174,7 @@ You can use it by specifying "formatName" with "args" parameter of key binding.
 
 ```html
 	e:/Works/vscode-copy-code-block/src/copy-code-block.ts:10
-	<pre><codde>
+	<pre><code>
 	export const packaged_commands: { [ key: string ]: ( args: any ) => void } = {
 	    [ COPY_CODE_BLOCK ]: ( option: any ) => {
 	        copyCodeBlock( option )

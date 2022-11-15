@@ -2,10 +2,10 @@
     "name": "copy-code-block",
     "displayName": "Copy Code Block",
     "description": "Copy code with filename and line number, customized format.",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "publisher": "Matsuyanagi",
     "engines": {
-        "vscode": "^1.59.0"
+        "vscode": "^1.73.0"
     },
     "categories": [
         "Other"
@@ -23,7 +23,7 @@
     "activationEvents": [
         "onCommand:extension.copyCodeBlock"
     ],
-    "main": "./out/extension",
+    "main": "./out/extension.js",
     "contributes": {
         "commands": [
             {
@@ -139,16 +139,16 @@
         "test": "node ./out/test/runTest.js"
     },
     "devDependencies": {
-        "@types/vscode": "^1.59.0",
-        "@types/glob": "^7.1.4",
-        "@types/mocha": "^9.0.0",
+        "@types/vscode": "^1.73.0",
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^10.0.0",
         "@types/node": "16.x",
-        "eslint": "^7.32.0",
-        "@typescript-eslint/eslint-plugin": "^4.29.0",
-        "@typescript-eslint/parser": "^4.29.0",
-        "glob": "^7.1.7",
-        "mocha": "^9.0.3",
-        "typescript": "^4.3.5",
-        "vscode-test": "^1.6.1"
+        "@typescript-eslint/eslint-plugin": "^5.42.0",
+        "@typescript-eslint/parser": "^5.42.0",
+        "eslint": "^8.26.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.1.0",
+        "typescript": "^4.8.4",
+        "@vscode/test-electron": "^2.2.0"
     }
 }
