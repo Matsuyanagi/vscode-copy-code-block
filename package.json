@@ -2,10 +2,10 @@
     "name": "copy-code-block",
     "displayName": "Copy Code Block",
     "description": "Copy code with filename and line number, customized format.",
-    "version": "0.0.9",
+    "version": "0.0.11",
     "publisher": "Matsuyanagi",
     "engines": {
-        "vscode": "^1.73.0"
+        "vscode": "^1.77.0"
     },
     "categories": [
         "Other"
@@ -20,9 +20,7 @@
         "type": "git",
         "url": "https://github.com/Matsuyanagi/vscode-copy-code-block.git"
     },
-    "activationEvents": [
-        "onCommand:extension.copyCodeBlock"
-    ],
+    "activationEvents": [],
     "main": "./out/extension.js",
     "contributes": {
         "commands": [
@@ -139,16 +137,16 @@
         "test": "node ./out/test/runTest.js"
     },
     "devDependencies": {
-        "@types/vscode": "^1.73.0",
-        "@types/glob": "^8.0.0",
-        "@types/mocha": "^10.0.0",
+        "@types/vscode": "^1.77.0",
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
         "@types/node": "16.x",
-        "@typescript-eslint/eslint-plugin": "^5.42.0",
-        "@typescript-eslint/parser": "^5.42.0",
-        "eslint": "^8.26.0",
-        "glob": "^8.0.3",
-        "mocha": "^10.1.0",
-        "typescript": "^4.8.4",
-        "@vscode/test-electron": "^2.2.0"
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "eslint": "^8.36.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.2.0",
+        "typescript": "^4.9.5",
+        "@vscode/test-electron": "^2.3.0"
     }
 }
